@@ -1,0 +1,3 @@
+ALTER TABLE dbo.ZYUser ADD CaptionEditor CHAR(1) NOT NULL DEFAULT ('0');
+GO
+

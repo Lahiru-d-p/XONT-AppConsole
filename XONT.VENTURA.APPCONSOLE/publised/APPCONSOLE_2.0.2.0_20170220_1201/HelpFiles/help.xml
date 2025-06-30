@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+    <HelpPage description="Master Maintenance" ID="/help/masterdata.html">
+	
+    	<HelpPage description="Retailer Maintenance" ID="VRMNT12/help/VRMNT12.htm"></HelpPage>
+    	<HelpPage description="Product Maintenance" ID="VRMNT16/help/VRMNT16.htm"></HelpPage>
+		<HelpPage description="Route Maintenance" ID="VRMNT17/help/VRMNT17.htm"></HelpPage>
+		<HelpPage description="Vehicle Maintenance" ID="VRMNT41/help/VRMNT41.htm"></HelpPage>
+		<HelpPage description="Distributor Maintenance" ID="VRMNT27/help/VRMNT27.htm"></HelpPage>
+		<HelpPage description="Trade Scheme Maintenance" ID="VRMNT23/help/VRMNT23.htm"></HelpPage>
+		<HelpPage description="User Profile Maintenance" ID="VRMNT39/help/VRMNT39.htm"></HelpPage>
+		<HelpPage description="Executive User Profile Maintenance" ID="VRMNT45/help/VRMNT45.htm"></HelpPage>		
+		<HelpPage description="User Master Value Maintenance" ID="VRMNT29/help/VRMNT29.html"></HelpPage>
+		<HelpPage description="User Menu Maintenance" ID="VRMNT32/help/VRMNT32.html"></HelpPage>
+		<HelpPage description="Route Itenerary Maintenance" ID="VRMNT21/help/VRMNT21.html"></HelpPage>
+		
+	</HelpPage>
+	
+	<HelpPage description="Sales Organization" ID="">
+		<HelpPage description="Classification Code Maintenance" ID="VRMNT01/help/VRMNT01.html"></HelpPage>
+		<HelpPage description="Classification Value Maintenance" ID="VRMNT02/help/VRMNT02.htm"></HelpPage>
+		<HelpPage description="Executive Maintenance" ID="VRMNT15/help/VRMNT15.html"></HelpPage>
+		<HelpPage description="Executive Classification Maintenance" ID="VRMNT03/help/VRMNT03.html"></HelpPage>	
+	</HelpPage>
+	
+	<HelpPage description="Monthly Target" ID="">
+		<HelpPage description="Monthly Target" ID="VRMNT26/help/VRMNT26.htm"></HelpPage>
+		<HelpPage description="Batch Executive Target Uplaod" ID="VRBCH03/help/VRBCH03.htm"></HelpPage>
+	</HelpPage>
+       
+	<HelpPage description="Ordering Process" ID="">
+		<HelpPage description="Suggested Order" ID="VRTRN11/help/VRTRN11.htm"></HelpPage>
+		<HelpPage description="Calculation Code Maintenance" ID="VRMNT43/help/VRMNT43.htm"></HelpPage>
+	</HelpPage>
+	
+	<HelpPage description="Stock at Distributor Point" ID="">
+		<HelpPage description="Product Maintenance" ID="VRMNT16/help/VRMNT16.htm"></HelpPage>
+		<HelpPage description="Product at Warehouse" ID="VRMNT35/help/VRMNT35.htm"></HelpPage> 
+	</HelpPage>
+	
+	<HelpPage description="Route Plan" ID="">
+		<HelpPage description="Route Maintenance" ID="VRMNT17/help/VRMNT17.htm"></HelpPage>
+		<HelpPage description="Route Itenerary Maintenance" ID="VRMNT21/help/VRMNT21.html"></HelpPage>
+	</HelpPage>
+	
+	<HelpPage description="XONT GRN Process Batch" ID="">
+		<HelpPage description="GRN" ID="VRTRN57/help/VRTRN57.htm"></HelpPage>
+	    <HelpPage description="Consolidate PO" ID="VRTRN23/help/VRTRN23.htm"></HelpPage>
+		<HelpPage description="PO Review" ID="VRTRN25/help/VRTRN25.htm"></HelpPage>
+		<HelpPage description="Process Purchase Invoice" ID="VRTRN35/help/VRTRN35.htm"></HelpPage>
+	</HelpPage>
+	
+	<HelpPage description="Maintenance" ID="">
+		<HelpPage description="User Maintenance" ID="VRMNT30/help/VRMNT30.html"></HelpPage>
+	</HelpPage>
+	
+	<HelpPage description="Transaction" ID="">
+		<HelpPage description="Manual Stock Transafer ( ROL Aleart)" ID="VRTRN03/help/VRTRN03.htm"></HelpPage>
+		<HelpPage description="Route Tranacation" ID="VRTRN04/help/VRTRN04.htm"></HelpPage>
+	</HelpPage>
+	
+
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+  
+
+
+ 

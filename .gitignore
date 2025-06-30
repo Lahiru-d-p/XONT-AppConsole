@@ -1,0 +1,24 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.BLL/bin
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.BLL/obj
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.DAL/bin
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.DAL/obj
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.Domain/bin
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.Domain/obj
+*.user
+*.vspscc
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.WEB/bin
+*.vssscc
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.WEB/obj
+/XONT.VENTURA.APPCONSOLE/.vs/config
+/XONT.VENTURA.APPCONSOLE/packages
+*.zip
+*.suo
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.WEB/V2MNT05
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.WEB/node_modules_1
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.WEB/node_modules
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.WEB/APBCH01
+/XONT.VENTURA.APPCONSOLE/XONT.Ventura.AppConsole.WEB/V2MNT09

@@ -1,0 +1,266 @@
+<xont-ventura-message-prompt #msgPrompt></xont-ventura-message-prompt>
+<xont-ventura-message-prompt [id]="'msgAlertPrompt'" messageType="alert" #msgAlertPrompt></xont-ventura-message-prompt>
+<div [ngBusy]="busy"></div>
+<style>
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+        /*margin: 100px;*/
+    }
+
+        .fileUpload input.upload {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+</style>
+
+<form #form1="ngForm" (keydown.enter)="$event.preventDefault()" autocomplete="off">
+
+    <div id="divFormWrapper" style="margin-bottom: -5px;">
+        <div id="divFormPart1" style="display:inline-block;">
+            <table>
+                <tr>
+                    <td style="padding-right: 64px;">
+                        <span id="lblUserProfile" class="Captionstyle">User Profile</span>
+                    </td>
+                    <td>
+                        <input name="txtUserProfile" [(ngModel)]="UserProfile.UserProfileShortName" required [disabled]="pageInit.Mode == 'edit'"
+                               onkeypress="return blockCharacters(event, ['&#34;', '#',' ', ';', '\'','&', '&quot;'])"
+                               #txtUserProfile="ngModel" type="text" maxlength="10" id="txtUserProfile" class="Textboxstyle" style="width:150px;">
+                        <small *ngIf="txtUserProfile.errors?.required" class="MandatoryValidatorStyle">*</small>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span id="lblUserName" class="Captionstyle">User Name</span>
+                    </td>
+                    <td>
+                        <input name="txtUserName" type="text" maxlength="40" id="txtUserName"
+                               onkeypress="return blockCharacters(event, ['&#34;', '#', ';', '\'', '&', '&quot;'])"
+                               required #txtUserName="ngModel" [(ngModel)]="UserProfile.UserProfileName" class="Textboxstyle" style="width:337px;">
+                        <small *ngIf="txtUserName.errors?.required" class="MandatoryValidatorStyle">*</small>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span id="lblAddress" class="Captionstyle">Address</span>
+                    </td>
+                    <td>
+                        <input name="txtAddressLine1" [(ngModel)]="UserProfile.AddressLine1" type="text"
+                               onkeypress="return blockCharacters(event, ['&#34;', '#', ';', '\'', '&', '&quot;'])"
+                               maxlength="40" id="txtAddressLine1" class="Textboxstyle" style="width:300px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input name="txtAddressLine2" [(ngModel)]="UserProfile.AddressLine2" type="text"
+                               onkeypress="return blockCharacters(event, ['&#34;', '#', ';', '\'', '&', '&quot;'])"
+                               maxlength="40" id="txtAddressLine2" class="Textboxstyle" style="width:300px;">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input name="txtAddressLine3" [(ngModel)]="UserProfile.AddressLine3" type="text"
+                               onkeypress="return blockCharacters(event, ['&#34;', '#', ';', '\'', '&', '&quot;'])"
+                               maxlength="40" id="txtAddressLine3" class="Textboxstyle" style="width:300px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input name="txtAddressLine4" [(ngModel)]="UserProfile.AddressLine4" type="text"
+                               onkeypress="return blockCharacters(event, ['&#34;', '#', ';', '\'', '&', '&quot;'])"
+                               maxlength="40" id="txtAddressLine4" class="Textboxstyle" style="width:300px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input name="txtAddressLine5" [(ngModel)]="UserProfile.AddressLine5" type="text"
+                               onkeypress="return blockCharacters(event, ['&#34;', '#', ';', '\'', '&', '&quot;'])"
+                               maxlength="40" id="txtAddressLine5" class="Textboxstyle" style="width:300px;">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="divImgWrapper" style="display:inline-block;">
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="padding-right: 45px;padding-left:143px;">
+                            <span id="lblUserImage" class="Captionstyle" style="padding-right: 3px;">User Image</span>
+                        </td>
+                        <td>
+                            <div class="fileUpload">
+
+                                <div *ngIf="imageSrc == ''" id="emptyLogo" style="width:150px;height:150px;text-align: center;padding-top: 30px;" class="fa fa-user fa-5x" aria-hidden="true"></div>
+
+                                <img [hidden]="imageSrc ==''" class="zoomImg" style="width:150px;height:150px" [src]="imageSrc" />
+
+                                <button class="btn btn-xs" title="Select">
+                                    <i id="btnChange" style="cursor: pointer;" class="fa fa-folder-open fa-lg orange" title="Select" (click)="openfileDialog();"></i>
+                                </button>
+                                <button class="btn btn-xs" title="Remove">
+                                    <i id="btnRemove" style="cursor: pointer;" class="fa fa-times fa-lg red" (click)="removeImage();" title="Remove"></i>
+                                </button>
+                                <input name="avatarUpload" class="Captionstyle" type="file" (change)="handleProfilePictureInputChange($event)" id="avatarUpload" value="Select" accept=".jpg,.jpeg,.png" style="display:none;margin-top: 10px;">
+                            </div>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td style="padding-right:76px;">
+                    <span id="lblPostCode" class="Captionstyle">Post Code</span>
+                </td>
+                <td>
+                    <input name="txtPostCode" type="text" maxlength="10"
+                           onkeypress="return blockCharacters(event, ['&#34;', '#', ';', '\'', '&', '&quot;'])"
+                           [(ngModel)]="UserProfile.PostCode" #txtPostCode="ngModel"
+                           id="txtPostCode" class="Textboxstyle" style="width:150px;" pattern="^[a-zA-Z0-9_\/\-]+$">
+                    <span *ngIf="txtPostCode.errors?.pattern" class="Errormessagetextstyle">Invalid Entry</span>
+                </td>
+                <td style="padding-left: 12px;">
+                    <span id="lblNIC" class="Captionstyle">NIC Number</span>
+                </td>
+                <td>
+                    <input name="txtNIC" type="text" maxlength="12" [(ngModel)]="UserProfile.NIC" (keyup)="OnNICChange($event)"
+                           id="txtNIC" class="Textboxstyle" style="width:154px;">
+                    <span *ngIf="!nicValid" class="Errormessagetextstyle">Invalid entry</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="lblTelephoneNumber" class="Captionstyle">Telephone Number</span>
+                </td>
+                <td>
+                    <input name="txtTelephoneNumber" type="text" maxlength="20" pattern="[0-9]+"
+                           [(ngModel)]="UserProfile.TelephoneNumber" #txtTelephoneNumber="ngModel"
+                           id="txtTelephoneNumber" class="Textboxstyle" style="width:150px;">
+                    <span *ngIf="txtTelephoneNumber.errors?.pattern" class="Errormessagetextstyle">Invalid entry</span>
+
+                </td>
+                <td style="padding-left: 12px;padding-right:5px;">
+                    <span id="lblEmplyeeNo" class="Captionstyle">Employee Number</span>
+                </td>
+                <td>
+                    <input name="txtEmployeeNo" type="text" maxlength="15" [(ngModel)]="UserProfile.EmployeeNo" id="txtEmployeeNo"
+                           onkeypress="return blockCharacters(event, ['&#34;', '#', ';', '\'', '&', '&quot;'])"
+                           class="Textboxstyle" style="width:154px;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="lblMobileNumber" class="Captionstyle">Mobile Number</span>
+                </td>
+                <td>
+                    <input name="txtMobileNumber" type="text" maxlength="15" id="txtMobileNumber" [(ngModel)]="UserProfile.MobileNumber"
+                           class="Textboxstyle" style="width:150px;" #txtMobileNumber="ngModel" pattern="[0-9]+">
+                    <span *ngIf="txtMobileNumber.errors?.pattern" class="Errormessagetextstyle">Invalid entry</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="lblEmailAddress" class="Captionstyle">Email Address</span>
+                </td>
+                <td>
+                    <input name="txtEmailAddress" type="text" maxlength="50" [(ngModel)]="UserProfile.EmailAddress"
+                           #txtEmailAddress="ngModel" id="txtEmailAddress" class="Textboxstyle" style="width:470px;"
+                           pattern="^([\w\d\-\.]+)@{1}(([\w\d\-]{1,67})|([\w\d\-]+\.[\w\d\-]{1,67}))\.(([a-zA-Z\d]{1,20})(\.[a-zA-Z\d]{2})?)$">
+                    <span *ngIf="txtEmailAddress.errors?.pattern" class="Errormessagetextstyle">Invalid entry</span>
+                </td>
+                <td style="padding-left:12px;">
+                    <span id="lblDB" class="Captionstyle">Date Of Birth</span>
+                </td>
+                <td>
+                    <!--<input name="txtDob" type="text" maxlength="10" validateDate [(ngModel)]="UserProfile.DateOfBirthString" #txtDob="ngModel" id="txtDob" class="Textboxstyle" style="width:130px;">
+                    <xont-ventura-datepicker [id]="datepickerID1" (onDateSelect)="onDOBChange($event)"></xont-ventura-datepicker>
+                    <span *ngIf="txtDob.errors?.validateDate" class="Errormessagetextstyle">Invalid entry</span>-->
+
+                    <xont-ventura-date-controller id="txtDob" name="txtDob" [width]="129" [allowFutureDates]="false"
+                                                  [(ngModel)]="UserProfile.DateOfBirthString">
+                    </xont-ventura-date-controller>
+
+
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="lblTradeSchemeGroup" class="Captionstyle">Trade Scheme Group</span>
+                </td>
+                <td colspan="4">
+                    <!--<input name="txtTradeSchemeGroup" type="text" [(ngModel)]="UserProfile.TradeSchemeGroup" readonly="readonly"
+                        disabled="disabled" id="txtTradeSchemeGroup" class="Textboxstyle" style="width:120px;">
+                    <input type="submit" name="btnTradeSchemeGroup" value="" (click)="btnFindTradeSchemeGroup_Click()"
+                        id="btnTradeSchemeGroup" class="FindButton" style="border-width:0px;height:16px;width:20px;">
+                    <input name="txtTradeSchemeGroupDesc" [(ngModel)]="UserProfile.TradeSchemeGroupDesc"
+                        type="text" readonly="readonly" disabled="disabled" id="txtTradeSchemeGroupDesc" class="Textboxstyle" style="width:320px;">
+                    <xont-ventura-single-prompt [id]="mdp1" #mdpTradeSchemeGroup (onSelect)="mdpTradeSchemeGroup_OnSelect($event)"
+                                                (onCancel)="mdpTradeSchemeGroup_OnCancel($event)"></xont-ventura-single-prompt>-->
+
+                    <xont-ventura-list-prompt name="lmptTradeShemeGroup" id="lmptTradeShemeGroup"
+                                              #lmptTradeShemeGroup
+                                              [maxLengths]="[4,50]"
+                                              [inputWidths]="[120,322]"
+                                              [gridHeaders]="['Trade Scheme Group','Description']"
+                                              [gridFields]="['TradeSchemeGroup','Description']"
+                                              [mandatory]="true"
+                                              [strict]="true"
+                                              (onDataBind)="lmptTradeShemeGroup_DataBind()"
+                                              [(ngModel)]="UserProfile"
+                                              [modelProps]="['TradeSchemeGroup','TradeSchemeGroupDesc']"
+                                              [dataFields]="['TradeSchemeGroup','Description']">
+                    </xont-ventura-list-prompt>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="lblActive" class="Captionstyle">Active</span>
+                </td>
+                <td style="padding-left:6px;">
+                    <span class="Checkboxstyle">
+                        <input id="chkActive" #chkActive type="checkbox" (change)="setStatus(chkActive.checked);" name="chkActive" [checked]="UserProfile.Status == '1'">
+                    </span>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    </div>
+    <div style="margin-top:20px;">
+        <button type="submit" name="btnOk" id="btnOk" [disabled]="!form1.form.valid || !lmptTradeShemeGroup.valid || !nicValid" (click)="onSubmit()" class="MainButtonStyle">OK</button>
+        <button type="button" name="btnCancel" id="btnCancel" class="MainButtonStyle" (click)="btnCancel_Click()">Cancel</button>
+    </div>
+    <!-- The Modal -->
+    <div id="imageModalID" class="imageModal">
+
+        <!-- The Close Button -->
+        <span class="imageClose">&times;</span>
+
+        <!-- Modal Content (The Image) -->
+        <img class="imageModalContent" id="imageModalContentID">
+
+        <!-- Modal Caption (Image Text) -->
+        <div id="imageCaption"></div>
+    </div>
+</form>
+
+

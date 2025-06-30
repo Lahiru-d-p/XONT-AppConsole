@@ -1,0 +1,95 @@
+********************************************************
+Solution Name	: APPConsole (Version 2)
+Remarks : Modified existing AppConsole with new UI skin. WEB layer almost got changed.all the old script were added to the new TFS folder along
+		  with the new scripts.
+		  bin includes only the dlls that is related to AppConsole.
+Author		: Dilsan Madusanka, Surija SiriKumar, Anushka Thennekon
+Date Created	: 20160720
+Spc ID		: 
+
+********************************************************
+
+***************************** Modification Control ******************************
+Tag         Date           Developer    SpecID		Version		Project 	 Description
+*********************************************************************************
+V2001       07-Jul-2016		Dilsan					2.0.1.0					 modified due to naming changes of VRMNT50 to V2MNT21 
+																			 new CSS class was added for mandatory sign. added CSS styles 
+																			 for the text boxes that are in paging button set.
+																			 (this version must be publised as a new site since name change affected many source files)
+V2002		05-Aug-2016		Surija					2.0.1.1					 Added Graphical View for task codes to the appconsole
+V2003		09-Aug-2016		Surija					2.0.1.2					 Added User Change Password Option to the Appconsole in the Settings Option 
+V2004		11-Aug-2016		Surija					2.0.1.4					 Modifying login page , to include change password option
+V2005		07-Oct-2016		Surija					2.0.1.4					 Display BusinessUnitName 
+V2006		07-Nov-2016		Dilsan					2.0.1.5					 corrected the business unit address populating in wrong way.(dal layer)
+V2006		07-Nov-2016		Dilsan					2.0.1.6					 Added User properties to domain layer User class for the modifications for ZYMNT05(User Maintenance)/ added Main Page Silds and changed the Video file path
+V2007       09-Nov-2016     Surija					2.0.1.8					 Admin Alert
+V2008       13-Jan-2017     Dilsan					2.0.1.9					 Added missing security contrains from the old app console(one modification in login.aspx.cs).
+																			 made the multimedia query date fields language independant(dal layer)
+V2009       25-Jan-2017     Surija					2.0.2.0					 Added full screen options for components
+V2010		15-May-2017		Surija					2.0.2.1					 Modified Help Files Functionality
+V2011		22-May-2017		Surija					2.0.2.2					 Fixed overflow issue on IE						
+V2012		22-May-2017		Surija					2.0.2.3					 Active User Count (xontadmin and administrator must not be included)
+V2013		30-May-2017		Dilsan					2.0.2.4					 fixed pdf report issue - when try to close component confirmation popup won't be shown.
+V2014		06-Jun-2017		Surija					2.0.2.5					 Automate loading of tasks when System Role/Menu is attached for relevent user
+V2015		07-Jun-2017		Surija					2.0.2.6					 Update multimedia (Appconsole display)
+V2016		06-Jul-2017		Surija					2.0.2.7					 Added Daily Auto menu 
+V2016		19-Jul-2017		Dilsan					2.0.3.0					 modified the Note window.(two sizes to view), added mail controller icon image to the App_Themes including css changes for each theme.
+V2017		21-Jul-2017		Surija					2.0.3.1					 Added Notification(s) feature	/ PriorityRole(Menu) Task/ Changes MainBusinessUnit Session on toggle between User's BusinessUnit
+V2018		26-Jul-2017		Surija					2.0.3.2					 Automate Insert to RD.UserNotification based on executed Task		
+V2019		27-Jul-2017		Surija					2.0.3.3					 Bug Fix
+V2020		24-Aug-2017		Surija					2.0.3.4					 Onclick btnOK , Insert Take from RD.UserNotificationTask to RD.UserNotification		
+V2021		2017.10.20		Chamod					2.0.4.0					 do the changes to support WEB API and Angular 2
+																			1.Installed WEB API to WEB layer
+																			2.added WEB API & Session configuration to Global.asax
+																			3.added package.json & ventura.config.json files
+																			4.load components with ExecutionScript from ZYTask
+V2022	    15-Nov-2017		Surija					2.0.4.1					  Changed Datetime format for AUTODAILY Menu
+V2023		20-Nov-2017		Dilsan					2.0.5.0					Reset paging toggles happened in component when the tab is closed.
+																			reflect all the style changes(css,images) related to custom controls(Mail controllers and GridLaoder).
+V2024		2017.11.29		Chamod					2.0.6.0					1.Removed V3.css files from App_Themes folder and put them to new App_Themes_V3 folder.
+																			2.fixed Loading button set and fieldset style issues in V3.css.
+																			3.add few functions to V3.js file.
+V2025		2017.02.05		Dilsan					2.0.7.0					fix not identifing BU Session hardcoded components.Custom page also modifed and added to the published folder.
+																			chnanged StaticUserSession Object's BusinessUnit when user changes the businessUnit
+V2026		2018.03.26		Dilsan					2.0.8.0					Added new printer Icon, pdf icon of mail controller and Updated js file of Disable_BackSpace for full postback progress bar.
+V2027		2018.05.23		Chamod					2.0.9.0					added js ad css for V3 image viewer...
+																			added "jspdf.debug.js" & "jspdf.plugin.autotable.js" files to js folder...
+V2028		2018.09.03		Dilsan					2.0.10.0				bookmarks are not getting saved when under certain circumstances
+VR029		2018.10.03		Padmala					2.0.11.0				Save the LogOutTime in 24 hours format
+V2030		2018.11.12		Dilsan					2.0.12.0				prompt page size loading added to V3.js
+																			gird freezing styles(v3.css files)
+																			list prompt loading image to images of blue folder.
+V2031		2018.11.27		Dilsan					2.0.13.0				Common Methods were Added to BusinessUnit class to get businessUnit details and Logo for reports
+V2032		2018.12.17		Dilsan					2.0.14.0				Populate WebAddress property of BusinessUnit session object when user logs in.
+V2033		2018.12.26		Dilsan					2.0.15.0				Added CaptionEditor to User Class, Populate that on user login to the session. Added static file changes related to caption translate library
+V2034		2018.12.27		Dilsan					2.0.16.0				Fixed : lightsearch preserving filter value after a search.(gridviewscroll.min.js in js folder)
+V2035		2019.01.14		Chamod					2.0.17.0				Added SheetJS files to js folder(Lib. for V3 excel upload)...
+V2036		2019.01.30		Dilsan					2.0.18.0				Implemented a mechanism to View Version info of Components individualy and overall system.
+																			Added Files VenturaSystemInfo.cs, ComponentDiagnostics.aspx, SystemDiagnostics.aspx
+
+V2037		2019.02.21		Chamod					2.0.19.0				Getting all control data through sigle request in V3.js (need customControl dll 2.0.25.0).
+																			Show normal mouse pointer on desabled buttons.
+V2038		2019.03.18		Dilsan					2.0.20.0				Increase number of openable tabs to 5. increased the z-index for progress bar.(App_Themes).
+																			Added Cache busting related code part given by Chamika.
+V2039		2019.05.07		Dilsan					2.0.21.0				modified according to task notification implemented for V3.
+V2040		2019.07.09		Dilsan					2.0.22.0				Added Toast message Validation for GridEntry screens styles to V3 style sheets.
+																			Remove Vat Registration No from the common method written for BusinessUnit details.
+V2041		20191015		Dilsan					2.0.23.0				Encrypted username and password before submitting to server. this was requested by LION since applying SLL cirtificate is not in their favor.
+V2042		20200103		Nashan				    2.0.24.0			    Add a two propeties to User Object in Domain Library and set them to logged in user object
+V2043		20200430		Dilsan					2.0.25.0				Add customer defined logo if maintained at the location.
+V2044		20200107		Dilsan					2.0.26.0				send a mail along with popup notification of license expiry. this should be only sent once for a given day.
+V2045		20211001		Dilsan					2.0.27.0				Try to open the CRM Screen in a separate browser window. when opening version info of a component cannot open in the same task window. try loading it to a different task window if possible. update the App_Themes related to new Grid buttons set
+																			Added BusinessUnit name to expiry mail altert
+V2046       20221106		Wathsala				2.0.28.0				display background logo if maintained at the location.(the image should be maintained at image folder with name 'backgroundLogo.png')
+V2047       20221220		Wathsala				2.0.29.0				Exclude the outlet users (users of UserLevelGroup ="OWNER") when get the active user count
+V2048       20221230		Wathsala				2.0.30.0				Add new property "PUSQQtyEdit" to User Object in Domain Librar
+V2049		20230723		Wathsala				2.0.31.0				Modify to avoid task open by multiple users , based on the dbo.ZYTask.ExclusivityMode flag
+																			if ExclusivityMode = "1" or if ExclusivityMode = "2" and user is power user or user is active user attached to multiple territories lock the task at BusinessUnit level.
+																			if ExclusivityMode = "2" and user is active user attached to single territory lock the task at territory level.
+V2050		20230807		Wathsala				2.0.32.0				1.upgrade to jquery version 3.6.4
+																			2.Change the validation message at login page for user name and password as 'Invalid User Name or Password'.
+																			3.Add new CustomError page to redirect at runtime errors to avoid display stack trace to end user.
+																			 (note : need to add <customErrors mode="RemoteOnly" defaultRedirect="~/CustomError.aspx" /> element to web.config )
+																			4.exclude admin, xontadmin, administrator users from license expiring.
+V2051		20231107		Padmala					2.0.33.0				Fixed issue - V2 Grid not work correctly with jquery version 3.6.4.  Apply latest GridViewScroll. old one is not support for jquery version 3.6.4
+V2052		20230228		Padmala					2.0.34.0				Include bootstrap-multiselect js and css files(It needed STDOC01)

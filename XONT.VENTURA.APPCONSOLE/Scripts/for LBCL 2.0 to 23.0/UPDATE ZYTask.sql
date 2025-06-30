@@ -1,0 +1,1 @@
+UPDATE dbo.ZYTask SET ExecutionScript=RTRIM(TaskCode)+'/'+RTRIM(TaskCode)+'.aspx'

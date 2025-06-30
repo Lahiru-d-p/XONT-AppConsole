@@ -1,0 +1,151 @@
+<xont-ventura-message-prompt #msgPrompt>
+</xont-ventura-message-prompt>
+
+<div [ngBusy]="busy"></div>
+
+<xont-ventura-collapsible id="collapse1"
+targetElementID="selectionCriteria"
+[collapsed]="selectionCriteria.Collapsed"
+(onChange)="selectionCriteria.Collapsed=!selectionCriteria.Collapsed">
+</xont-ventura-collapsible>
+
+
+<div id="selectionCriteria" class="collapse">
+    <table>
+        <tbody>
+            <tr>
+                <td style="padding-right: 20px;">
+                    <span id="lblUserProfile" class="Captionstyle">User Profile</span>
+                </td>
+                <td>
+                    <input [(ngModel)]="selectionCriteria.UserProfile"
+                           type="text" id="txtUserProfile" name="txtUserProfile"
+                           onkeypress="return blockCharacters(event, ['&#34;', '#',' ', ';', '\'','&', '&quot;'])"
+                           #txtUserProfile="ngModel" style="width:150px" required
+                           class="Textboxstyle" maxlength="15">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span id="lblName" class="Captionstyle">Name</span>
+                </td>
+                <td>
+                    <input [(ngModel)]="selectionCriteria.Name" type="text" id="txtName" style="width:337px" 
+                           onkeypress="return blockCharacters(event, ['&#34;', '#', ';', '\'', '&', '&quot;'])"
+                           class="Textboxstyle" MaxLength="40">
+                </td>
+            </tr>
+            <!--<tr>
+                <td>&nbsp;</td>
+                <td>
+
+                    <fieldset style="width:238px">
+                        <legend class="GridCaptionstyle">Search type</legend>
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="Captionstyle">
+                                            <input id="optStartWith" type="radio" name="SearchType" value="optStartWith"
+                                                   [checked]="selectionCriteria.isStartWith"
+                                                   (change)="selectionCriteria.isStartWith = true;">
+                                            <label for="optStartWith">Start with</label>
+                                        </span>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <span class="Captionstyle">
+                                            <input id="optAnyWhereInText" type="radio" name="SearchType"
+                                                   value="optAnyWhereInText" [checked]="!selectionCriteria.isStartWith"
+                                                   (change)="selectionCriteria.isStartWith = false;">
+                                            <label for="optAnyWhereInText">Anywhere in text</label>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>-->
+            <tr>
+                <td></td>
+                <td style="padding-left: 5px;">
+                    <span class="Checkboxstyle">
+                        <input id="chkActiveOnly" type="checkbox"
+                               [checked]="selectionCriteria.isActiveOnly"
+                               (change)="selectionCriteria.isActiveOnly=!selectionCriteria.isActiveOnly">
+                        <label for="chkActiveOnly">Active only</label>
+                    </span>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <button type="submit" name="btnList" (click)="list(true)" id="btnList" class="MainButtonStyle">List</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div style="margin-top:20px;"> <xont-ventura-gridexport id="gridexport1" gridId="tblUserProfiles" gridName="User Profiles"></xont-ventura-gridexport></div>
+
+<span class="Labelstyle" [hidden]="userProfiles?.length != 0">No data found for the given criteria</span>
+<div class="DataTableContainer">
+    <table id="tblUserProfiles" class="DataTableStyle HeaderFreezeStyle"
+           [mfData]="userProfiles" #mf="mfDataTable"
+           [hidden]="userProfiles?.length == 0"
+           [mfRowsOnPage]="rowsOnPage"
+           [(mfSortBy)]="sortBy"
+           [(mfSortOrder)]="sortOrder">
+        <thead>
+            <tr>
+                <th style="width:3%;">
+                    <mfDefaultSorter by="UserProfile">User Profile</mfDefaultSorter>
+                </th>
+                <th style="width:4%;">
+                    <mfDefaultSorter by="UserProfileName">User Profile Name</mfDefaultSorter>
+                </th>
+                <th style="width:2%;">
+                    <mfDefaultSorter by="Status">Status</mfDefaultSorter>
+                </th>
+                <th style="width:1%;">
+                    <mfDefaultSorter>Options</mfDefaultSorter>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of mf.data" [ngClass]="{'deactiveRow':item.Status == 'Inactive'}">
+
+                <td style="width:3%;">{{item.UserProfile}}</td>
+                <td style="width:4%;">{{item.UserProfileName}}</td>
+                <td style="width:2%;">{{item.Status}}</td>
+                <td style="width:1%;">
+                    <a style="cursor:pointer;" (click)="newBasedOn_OnClick(item)">NewBasedOn |</a>
+                    <a style="cursor:pointer;" (click)="edit_OnClick(item)">Edit</a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7">
+                    <mfBootstrapPaginator></mfBootstrapPaginator>
+                    <span style="float:right">
+                        <xont-ventura-gridloader #gridLoader (onChange)="gridLoader_OnChange()">
+                        </xont-ventura-gridloader>
+                    </span>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<div>
+    <button (click)="btnNew_OnClick()" id="btnNew" class="MainButtonStyle">New</button>
+    <button onclick="closeTab()" class="MainButtonStyle">Exit</button>
+</div>
