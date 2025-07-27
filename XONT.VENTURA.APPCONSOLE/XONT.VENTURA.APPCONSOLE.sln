@@ -1,20 +1,26 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36301.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XONT.Ventura.AppConsole.Web", "XONT.Ventura.AppConsole.WEB\XONT.Ventura.AppConsole.Web.csproj", "{A6629BFB-7F94-449C-ABEA-C3B72677A5AE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XONT.Ventura.AppConsole.BLL", "XONT.Ventura.AppConsole.BLL\XONT.Ventura.AppConsole.BLL.csproj", "{E9109790-40CD-4B60-997C-10BA79D44D28}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XONT.Ventura.AppConsole.DAL", "XONT.Ventura.AppConsole.DAL\XONT.Ventura.AppConsole.DAL.csproj", "{6AA854DA-4D7A-4705-A566-D6F7547C3754}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XONT.Ventura.AppConsole.Domain", "XONT.Ventura.AppConsole.Domain\XONT.Ventura.AppConsole.Domain.csproj", "{3CDEE4B7-CD25-4E09-BEF8-9072525E2DD3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{72E81F4F-4A6E-472A-87BC-1D92FB606249}"
 	ProjectSection(SolutionItems) = preProject
 		Modification Log.txt = Modification Log.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XONT.Ventura.AppConsole.BLLCore", "XONT.Ventura.AppConsole.BLLCore\XONT.Ventura.AppConsole.BLLCore.csproj", "{C0CBE269-7E6D-6FF0-64E4-33CD827FC4AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XONT.Ventura.AppConsole.BLL", "XONT.Ventura.AppConsole.BLL\XONT.Ventura.AppConsole.BLL.csproj", "{E9109790-40CD-4B60-997C-10BA79D44D28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XONT.Ventura.AppConsole.DALCore", "XONT.Ventura.AppConsole.DALCore\XONT.Ventura.AppConsole.DALCore.csproj", "{7DC53829-0B1A-2081-0D14-8F96CCC3A075}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XONT.Ventura.AppConsole.DAL", "XONT.Ventura.AppConsole.DAL\XONT.Ventura.AppConsole.DAL.csproj", "{6AA854DA-4D7A-4705-A566-D6F7547C3754}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XONT.Ventura.AppConsole.DomainCore", "XONT.Ventura.AppConsole.DomainCore\XONT.Ventura.AppConsole.DomainCore.csproj", "{3947E646-5D24-C641-D6C3-0992A24405AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XONT.Ventura.AppConsole.Domain", "XONT.Ventura.AppConsole.Domain\XONT.Ventura.AppConsole.Domain.csproj", "{3CDEE4B7-CD25-4E09-BEF8-9072525E2DD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,14 +32,26 @@ Global
 		{A6629BFB-7F94-449C-ABEA-C3B72677A5AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6629BFB-7F94-449C-ABEA-C3B72677A5AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6629BFB-7F94-449C-ABEA-C3B72677A5AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0CBE269-7E6D-6FF0-64E4-33CD827FC4AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0CBE269-7E6D-6FF0-64E4-33CD827FC4AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0CBE269-7E6D-6FF0-64E4-33CD827FC4AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0CBE269-7E6D-6FF0-64E4-33CD827FC4AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E9109790-40CD-4B60-997C-10BA79D44D28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E9109790-40CD-4B60-997C-10BA79D44D28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9109790-40CD-4B60-997C-10BA79D44D28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9109790-40CD-4B60-997C-10BA79D44D28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC53829-0B1A-2081-0D14-8F96CCC3A075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DC53829-0B1A-2081-0D14-8F96CCC3A075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DC53829-0B1A-2081-0D14-8F96CCC3A075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DC53829-0B1A-2081-0D14-8F96CCC3A075}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6AA854DA-4D7A-4705-A566-D6F7547C3754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6AA854DA-4D7A-4705-A566-D6F7547C3754}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AA854DA-4D7A-4705-A566-D6F7547C3754}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AA854DA-4D7A-4705-A566-D6F7547C3754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3947E646-5D24-C641-D6C3-0992A24405AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3947E646-5D24-C641-D6C3-0992A24405AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3947E646-5D24-C641-D6C3-0992A24405AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3947E646-5D24-C641-D6C3-0992A24405AD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3CDEE4B7-CD25-4E09-BEF8-9072525E2DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3CDEE4B7-CD25-4E09-BEF8-9072525E2DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CDEE4B7-CD25-4E09-BEF8-9072525E2DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,22 +60,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://vstfs:8080/tfs/ventura_v2_new
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = XONT.Ventura.AppConsole.WEB\\XONT.Ventura.AppConsole.Web.csproj
-		SccProjectName1 = XONT.Ventura.AppConsole.WEB
-		SccLocalPath1 = XONT.Ventura.AppConsole.WEB
-		SccProjectUniqueName2 = XONT.Ventura.AppConsole.BLL\\XONT.Ventura.AppConsole.BLL.csproj
-		SccProjectName2 = XONT.Ventura.AppConsole.BLL
-		SccLocalPath2 = XONT.Ventura.AppConsole.BLL
-		SccProjectUniqueName3 = XONT.Ventura.AppConsole.DAL\\XONT.Ventura.AppConsole.DAL.csproj
-		SccProjectName3 = XONT.Ventura.AppConsole.DAL
-		SccLocalPath3 = XONT.Ventura.AppConsole.DAL
-		SccProjectUniqueName4 = XONT.Ventura.AppConsole.Domain\\XONT.Ventura.AppConsole.Domain.csproj
-		SccProjectName4 = XONT.Ventura.AppConsole.Domain
-		SccLocalPath4 = XONT.Ventura.AppConsole.Domain
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0CF62132-60CD-415A-93B8-EBAB76770960}
 	EndGlobalSection
 EndGlobal

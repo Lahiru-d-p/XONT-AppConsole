@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyTitle>XONT.Ventura.AppConsole.DomainCore</AssemblyTitle>
+    <Company>x-ont</Company>
+    <Product>XONT.Ventura.AppConsole.DomainCore</Product>
+    <Copyright>Copyright © x-ont 2009</Copyright>
+    <AssemblyVersion>2.0.34.0</AssemblyVersion>
+    <FileVersion>2.0.34.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Update="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Update="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SystemWebAdapters.CoreServices" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="XONT.Common.Message.MessageCreate">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Message.MessageCreate.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <AssemblyTitle>XONT.Ventura.AppConsole.DALCore</AssemblyTitle>
+    <Company>x-ont</Company>
+    <Product>XONT.Ventura.AppConsole.DALCore</Product>
+    <Copyright>Copyright © x-ont 2009</Copyright>
+    <AssemblyVersion>2.0.34.0</AssemblyVersion>
+    <FileVersion>2.0.34.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Update="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Update="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XONT.Ventura.AppConsole.DomainCore\XONT.Ventura.AppConsole.DomainCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="XONT.Common.Data.DBCommon">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Data.DBCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Common.Data.DBConnection">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Data.DBConnection.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Common.Data.DBService">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Data.DBService.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Common.Data.EncriptDecript">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Data.EncriptDecript.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Common.Data.FeildLevelAuthentic">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Data.FeildLevelAuthentic.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Common.Data.OptimesticObCompare">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Data.OptimesticObCompare.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Common.Data.Resource">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Data.Resource.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Common.Data.Service">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Data.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Common.Message.MessageCreate">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Message.MessageCreate.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.VENTURA.V2MNT21.BLL">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.VENTURA.V2MNT21.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.VENTURA.V2MNT21.DAL">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.VENTURA.V2MNT21.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.VENTURA.V2MNT21.DOMAIN">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.VENTURA.V2MNT21.DOMAIN.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

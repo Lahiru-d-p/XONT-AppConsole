@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <AssemblyTitle>XONT.Ventura.AppConsole.BLLCore</AssemblyTitle>
+    <Company>x-ont</Company>
+    <Product>XONT.Ventura.AppConsole.BLLCore</Product>
+    <Copyright>Copyright © x-ont 2009</Copyright>
+    <AssemblyVersion>2.0.34.0</AssemblyVersion>
+    <FileVersion>2.0.34.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XONT.Ventura.AppConsole.DALCore\XONT.Ventura.AppConsole.DALCore.csproj" />
+    <ProjectReference Include="..\XONT.Ventura.AppConsole.DomainCore\XONT.Ventura.AppConsole.DomainCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Update="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Update="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="XONT.Common.Message.MessageCreate">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Common.Message.MessageCreate.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Ventura.Common.GenerateLicense">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Ventura.Common.GenerateLicense.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Ventura.Common.Prompt.BLL">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Ventura.Common.Prompt.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Ventura.Common.Prompt.DAL">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Ventura.Common.Prompt.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.Ventura.Common.Prompt.Domain">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.Ventura.Common.Prompt.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="XONT.VENTURA.V2MNT21.DOMAIN">
+      <HintPath>..\..\..\..\..\..\XONT\XontResource\bin\XONT.VENTURA.V2MNT21.DOMAIN.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
