@@ -3224,6 +3224,7 @@
     <Content Include="icon-fonts\font-awesome-4.6.3\scss\_stacked.scss" />
     <Content Include="icon-fonts\font-awesome-4.6.3\scss\_variables.scss" />
     <None Include="Properties\PublishProfiles\Chamod.pubxml" />
+    <None Include="Properties\PublishProfiles\nazeer.pubxml" />
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
@@ -3232,11 +3233,6 @@
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
     <Content Include="ComponentDiagnositics.aspx" />
-    <Content Include="SOXLR71\index.html" />
-    <Content Include="SOXLR71\logo.jpg" />
-    <Content Include="SOXLR71\main-5H7H4UBC.js" />
-    <Content Include="SOXLR71\polyfills-B6TNHZQ6.js" />
-    <Content Include="SOXLR71\styles-OML5TFBW.css" />
     <Content Include="SystemDiagnostics.aspx" />
     <Content Include="ucChengePass.ascx" />
     <Content Include="UserMail.aspx" />
@@ -3275,14 +3271,6 @@
     </Content>
     <Content Include="V2MNT21\data\1.flv" />
     <Content Include="V2MNT21\data\3.flv" />
-    <Content Include="SOXLR71\media\fa-brands-400-Q3XCMWHQ.woff2" />
-    <Content Include="SOXLR71\media\fa-brands-400-R2XQZCET.ttf" />
-    <Content Include="SOXLR71\media\fa-regular-400-QSNYFYRT.woff2" />
-    <Content Include="SOXLR71\media\fa-regular-400-XUOPSR7E.ttf" />
-    <Content Include="SOXLR71\media\fa-solid-900-5ZUYHGA7.woff2" />
-    <Content Include="SOXLR71\media\fa-solid-900-PJNKLK6W.ttf" />
-    <Content Include="SOXLR71\media\fa-v4compatibility-LFEHZI6Y.woff2" />
-    <Content Include="SOXLR71\media\fa-v4compatibility-YY67RJWG.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminAlert.aspx.cs">

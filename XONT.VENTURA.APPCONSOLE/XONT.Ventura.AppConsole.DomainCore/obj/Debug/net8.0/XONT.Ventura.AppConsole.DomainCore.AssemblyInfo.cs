@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © x-ont 2009")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("2.0.34.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+beea71cd1424aec279835fd9ba0fefe1b76b6481")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d849edd42b9f93e5043eda0818bf97222345301")]
 [assembly: System.Reflection.AssemblyProductAttribute("XONT.Ventura.AppConsole.DomainCore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("XONT.Ventura.AppConsole.DomainCore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("2.0.34.0")]

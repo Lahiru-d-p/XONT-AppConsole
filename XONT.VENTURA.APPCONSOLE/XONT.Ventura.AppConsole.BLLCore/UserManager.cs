@@ -534,5 +534,30 @@ namespace XONT.Ventura.AppConsole.BLLCore
         {
             _userDal.UpdateUserNotification(businessUnit, userName, taskCode, ref msg);
         }
+
+        //V2053 Add Start
+        public List<UserTask> GetAuthorizedTaskURLs(string userName, ref MessageSet message)
+        {
+            var dt = new DataTable();
+
+            dt = _userDal.GetAuthorizedTaskURLs(userName, ref message);
+
+            var taskList = new List<UserTask>();
+
+            foreach (DataRow dtRow in dt.Rows)
+            {
+                var task = new UserTask();
+                task = (new UserTask
+                {
+                    TaskCode = !string.IsNullOrEmpty(dtRow["TaskCode"].ToString()) ? dtRow["TaskCode"].ToString() : "",
+                    UserName = userName.Trim(),
+                    url = dtRow["url"].ToString().Trim()
+                });
+                taskList.Add(task);
+            }
+
+            return taskList;
+        }
+        //V2053 Add End
     }
 }

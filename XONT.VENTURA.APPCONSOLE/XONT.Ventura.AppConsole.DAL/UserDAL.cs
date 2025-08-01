@@ -2983,7 +2983,6 @@ namespace XONT.Ventura.AppConsole
         {
             try
             {
-
                 String _commandText = "";
 
                 _dbServise.StartService();
@@ -3028,6 +3027,33 @@ namespace XONT.Ventura.AppConsole
                 _dbServise.CloseService();
             }
         }
+
+        //V2053 Add Start
+        public DataTable GetAuthorizedTaskURLs(string userName, ref MessageSet message)
+        {
+            var dt = new DataTable();
+
+            try
+            {
+                ParameterSet ParaSet = new ParameterSet();
+                var spParametersList = new List<SPParameter>();
+
+                ParaSet.SetSPParameterList(spParametersList, "UserName", userName, "");
+
+                _dbServise.StartService();
+                dt = _dbServise.FillDataTable(CommonVar.DBConName.SystemDB, "[dbo].[usp_GetAuthorizedTaskURLs]", spParametersList);
+            }
+            catch (Exception ex)
+            {
+                message = MessageCreate.CreateErrorMessage(0, ex, "GetAuthorizedTaskURLs","XONT.Ventura.AppConsole.DAL.dll");
+            }
+            finally
+            {
+                _dbServise.CloseService();
+            }
+            return dt;
+        }
+        //V2053 Add End
 
 
 

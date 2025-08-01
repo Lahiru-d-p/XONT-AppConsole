@@ -87,5 +87,6 @@ namespace XONT.Ventura.AppConsole
         List<string> GetTaskLockSessionsList(string businessUnit, ref MessageSet message);//V2049
         bool UpdateActiveTask(ActiveUserTask userActiveTask, string executionType, ref MessageSet message);//V2049
         bool UpdateActiveTask(string businessUnit, List<string> lstSessionID, ref MessageSet message);//V2049
+        List<UserTask> GetAuthorizedTaskURLs(string userName, ref MessageSet message); //V2053 Add
     }
 }

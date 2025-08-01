@@ -245,6 +245,69 @@ namespace XONT.Ventura.AppConsole
                             //Response.Write(script); 
                             #endregion
 
+                            // V2053 START
+                            HashSet<string> allowedUrls = new HashSet<string>(StringComparer.OrdinalIgnoreCase);    //Used HashSet since reading is faster than List
+
+                            try
+                            {
+                                MessageSet msgSet = null; 
+
+                                List<UserTask> tasks = userDao.GetAuthorizedTaskURLs(user.UserName, ref msgSet);
+
+                                if (tasks != null && tasks.Count > 0)
+                                {
+                                    //Used For instead of foreach for better performance
+                                    for(int i=0; i < tasks.Count; i++)
+                                    {
+                                        allowedUrls.Add("~/" + tasks[i].url);
+                                    }
+                                }
+                                allowedUrls.Add("~/Main.aspx");
+                                allowedUrls.Add("~/CustomError.aspx");
+                                allowedUrls.Add("~/Login.aspx");
+
+                                // Generate a unique key for this user's allowed URLs in the cache
+                                string cacheKey = "UserAllowedUrls_" + user.UserName.Trim() + "_" + Guid.NewGuid().ToString();
+
+                                // Store the HashSet<string> directly in the HttpContext.Current.Cache
+                                // Set the expiration to match the Forms Authentication ticket timeout
+                                HttpContext.Current.Cache.Insert(
+                                    cacheKey,
+                                    allowedUrls,
+                                    null, // No cache dependency
+                                    DateTime.Now.AddMinutes(FormsAuthentication.Timeout.TotalMinutes), // Expire with ticket
+                                    System.Web.Caching.Cache.NoSlidingExpiration,
+                                    System.Web.Caching.CacheItemPriority.Default,
+                                    null
+                                );
+
+                                // Issue Forms Authentication Ticket: UserData will now ONLY contain the small cacheKey
+                                string userNameForTicket = user.UserName.Trim();
+
+                                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                                    1,                                  // Version
+                                    userNameForTicket,                  // User name
+                                    DateTime.Now,                       // Issue date
+                                    DateTime.Now.AddMinutes(FormsAuthentication.Timeout.TotalMinutes), // Expiration date (match web.config)
+                                    false,                              // Persistent (remember me)
+                                    cacheKey,                           // <--- IMPORTANT: Store ONLY the cacheKey here
+                                    FormsAuthentication.FormsCookiePath // Path
+                                );
+
+                                // Encrypt and add the cookie
+                                string encTicket = FormsAuthentication.Encrypt(ticket);
+                                HttpCookie authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+                                Response.Cookies.Add(authCookie);
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Diagnostics.Trace.TraceError($"Login.aspx: Failed to load/cache authorized tasks for user {user.UserName}: {ex.Message}\r\nStack Trace: {ex.StackTrace}");
+                                valFailureText.Text = "Login successful, but failed to load access permissions. Please contact support.";
+                                FormsAuthentication.SignOut();
+                                return;
+                            }
+                            // V2053 END
+
                             Response.Redirect("Main.aspx");
                         }
                         else

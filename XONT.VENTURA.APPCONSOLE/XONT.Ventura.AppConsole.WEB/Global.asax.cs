@@ -5,12 +5,14 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Timers;
 using System.Web;
 using System.Web.Http;
+using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.UI;
 using XONT.Common.Message;
@@ -25,6 +27,8 @@ namespace XONT.Ventura.AppConsole
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             Application["Main_UserCount"] = 0;
             var users = new List<User>();
             Application["Main_User"] = users;
@@ -72,7 +76,196 @@ namespace XONT.Ventura.AppConsole
             //DENY - disallows page to be loaded in an iframe (regardless of the domain)
         }
 
-        protected void Application_AuthenticateRequest(object sender, EventArgs e) { }
+        //protected void Application_AuthenticateRequest(object sender, EventArgs e) { } // V2053 remove
+
+        // V2053 START
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+            HttpContext currentContext = HttpContext.Current;
+
+            string requestedPath = currentContext.Request.AppRelativeCurrentExecutionFilePath;
+
+            if (requestedPath.Equals("~/Main.aspx", StringComparison.OrdinalIgnoreCase) ||
+                requestedPath.Equals("Main.aspx", StringComparison.OrdinalIgnoreCase)   ||
+                requestedPath.Equals("/Main.aspx", StringComparison.OrdinalIgnoreCase)  )
+            {
+                return;
+            }
+
+            string rawFilePath = currentContext.Request.FilePath;
+
+            // Allow access to non-ASPX static files (CSS, JS, images, etc.)
+            string fileExtension = Path.GetExtension(rawFilePath);
+            if (!string.IsNullOrEmpty(fileExtension) && !fileExtension.Equals(".aspx", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            HttpCookie authCookie = currentContext.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                try
+                {
+                    FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
+                    if (authTicket != null && !authTicket.Expired)
+                    {
+                        string userName = authTicket.Name;
+                        string cacheKey = authTicket.UserData;
+
+                        HashSet<string> allowedUrls = null;
+                        if (!string.IsNullOrEmpty(cacheKey))
+                        {
+                            allowedUrls = currentContext.Cache[cacheKey] as HashSet<string>; // Cast to HashSet<string>
+                        }
+
+                        // If the list is not found in cache (e.g., cache eviction, bad key), or if the UserData was empty/invalid
+                        if (allowedUrls == null)
+                        {
+                            // If the list isn't in cache, the user cannot be properly authorized. Force re-login.
+                            System.Diagnostics.Trace.TraceWarning($"Global.asax AuthenticateRequest: User's allowed URLs not found in cache for key '{cacheKey}'. Forcing re-login for user: {userName ?? "N/A"}.");
+                            FormsAuthentication.SignOut();
+                            currentContext.Response.Redirect(FormsAuthentication.LoginUrl, true);
+                            HttpContext.Current.ApplicationInstance.CompleteRequest();
+                            return;
+                        }
+
+                        // Store the list in HttpContext.Items for access in AuthorizeRequest
+                        currentContext.Items["AllowedComponentUrls"] = allowedUrls;
+                        currentContext.Items["AuthenticatedUserName"] = userName;
+
+                        FormsIdentity id = new FormsIdentity(authTicket);
+                        currentContext.User = new System.Security.Principal.GenericPrincipal(id, null);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Trace.TraceError($"Global.asax AuthenticateRequest Error: {ex.Message}\r\nStack Trace: {ex.StackTrace}");
+                    FormsAuthentication.SignOut();
+                    currentContext.Response.Redirect(FormsAuthentication.LoginUrl, true);
+                    HttpContext.Current.ApplicationInstance.CompleteRequest(); // End request after redirect
+                }
+            }
+        }
+
+        protected void Application_AuthorizeRequest(object sender, EventArgs e)
+        {
+            HttpContext currentContext = HttpContext.Current;
+
+            string requestedPath = currentContext.Request.AppRelativeCurrentExecutionFilePath;
+
+            if (requestedPath.Equals("~/Main.aspx", StringComparison.OrdinalIgnoreCase) ||
+                requestedPath.Equals("Main.aspx", StringComparison.OrdinalIgnoreCase) ||
+                requestedPath.Equals("/Main.aspx", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            string rawFilePath = currentContext.Request.FilePath;
+
+            // Allow access to non-ASPX static files (CSS, JS, images, etc.)
+            string fileExtension = Path.GetExtension(rawFilePath);
+            if (!string.IsNullOrEmpty(fileExtension) && !fileExtension.Equals(".aspx", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            string normalizedPath = NormalizeUrl(requestedPath);
+            string normalizedLoginUrl = NormalizeUrl(FormsAuthentication.LoginUrl);
+
+            // Allow access to Login and CustomError pages without authentication
+            if (normalizedPath.Equals(normalizedLoginUrl, StringComparison.OrdinalIgnoreCase) ||
+                normalizedPath.Equals("~/CustomError.aspx", StringComparison.OrdinalIgnoreCase) ||
+                normalizedPath.Equals("~/Main.aspx", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            // Ensure the user is authenticated
+            if (!currentContext.User.Identity.IsAuthenticated)
+            {
+                FormsAuthentication.RedirectToLoginPage();
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+                return;
+            }
+
+            // Get username from HttpContext.Items (populated in AuthenticateRequest)
+            string userName = currentContext.Items["AuthenticatedUserName"] as string;
+            if (string.IsNullOrEmpty(userName))
+            {
+                // This state indicates a problem (user is authenticated but username lost or not set)
+                System.Diagnostics.Trace.TraceWarning("Global.asax AuthorizeRequest: Authenticated user has no username in HttpContext.Items. Forcing re-login.");
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+                return;
+            }
+
+            // Retrieve HashSet<string> from HttpContext.Items (populated in AuthenticateRequest)
+            HashSet<string> allowedComponentUrls = currentContext.Items["AllowedComponentUrls"] as HashSet<string>; // Cast to HashSet<string>
+
+            // This check is still vital: if the list is null, access cannot be granted.
+            if (allowedComponentUrls == null)
+            {
+                System.Diagnostics.Trace.TraceError("Global.asax AuthorizeRequest: AllowedComponentUrls not found in HttpContext.Items. This indicates a severe issue during Forms Auth ticket processing or cache lookup.");
+                FormsAuthentication.SignOut();
+                FormsAuthentication.RedirectToLoginPage();
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+                return;
+            }
+
+            // Check if the authenticated user's requested URL is in the allowed list
+            if (allowedComponentUrls.Contains(normalizedPath))
+            {
+                return; // Allowed by the authorized task list
+            }
+
+            // Deny Access if none of the above allow rules are met
+            System.Diagnostics.Trace.TraceWarning($"Access Denied for user '{userName}' to URL: '{requestedPath}'. Not in allowed list.");
+            currentContext.Response.Redirect("~/CustomError.aspx");
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
+        }
+
+        private string NormalizeUrl(string url)
+        {
+            // Remove query string if present
+            int queryStringIndex = url.IndexOf('?');
+            if (queryStringIndex > -1)
+            {
+                url = url.Substring(0, queryStringIndex);
+            }
+
+            // Ensure it starts with a tilde (~/) for application-relative paths
+            if (!url.StartsWith("~/", StringComparison.OrdinalIgnoreCase))
+            {
+                if (url.StartsWith("/"))
+                {
+                    url = "~" + url;
+                }
+                else
+                {
+                    url = "~/" + url;
+                }
+            }
+
+            // Critical: Handle trailing slashes consistently.
+            string fileExtension = Path.GetExtension(url);
+
+            if (!string.IsNullOrEmpty(fileExtension))
+            {
+                // If it's a file with an extension, remove any trailing slash
+                url = url.TrimEnd('/');
+            }
+            else // It's a path without an extension (likely a directory or an Angular route)
+            {
+                // Ensure it has a trailing slash for consistency, unless it's just "~/" (root).
+                if (!url.EndsWith("/", StringComparison.OrdinalIgnoreCase) && !url.Equals("~/", StringComparison.OrdinalIgnoreCase))
+                {
+                    url += "/";
+                }
+            }
+            return url;
+        }
+        // V2053 END
 
         protected void Application_Error(object sender, EventArgs e)
         {

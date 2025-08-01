@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\LahiruDilshan\\2025-07-21 app console upgrade\\AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DomainCore\\XONT.Ventura.AppConsole.DomainCore.csproj": {}
+    "E:\\LahiruDilshan\\2025-06-30 .net change app console\\XONT-AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DomainCore\\XONT.Ventura.AppConsole.DomainCore.csproj": {}
   },
   "projects": {
-    "E:\\LahiruDilshan\\2025-07-21 app console upgrade\\AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DomainCore\\XONT.Ventura.AppConsole.DomainCore.csproj": {
+    "E:\\LahiruDilshan\\2025-06-30 .net change app console\\XONT-AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DomainCore\\XONT.Ventura.AppConsole.DomainCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\LahiruDilshan\\2025-07-21 app console upgrade\\AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DomainCore\\XONT.Ventura.AppConsole.DomainCore.csproj",
+        "projectUniqueName": "E:\\LahiruDilshan\\2025-06-30 .net change app console\\XONT-AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DomainCore\\XONT.Ventura.AppConsole.DomainCore.csproj",
         "projectName": "XONT.Ventura.AppConsole.DomainCore",
-        "projectPath": "E:\\LahiruDilshan\\2025-07-21 app console upgrade\\AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DomainCore\\XONT.Ventura.AppConsole.DomainCore.csproj",
+        "projectPath": "E:\\LahiruDilshan\\2025-06-30 .net change app console\\XONT-AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DomainCore\\XONT.Ventura.AppConsole.DomainCore.csproj",
         "packagesPath": "C:\\Users\\Lahiru\\.nuget\\packages\\",
-        "outputPath": "E:\\LahiruDilshan\\2025-07-21 app console upgrade\\AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DomainCore\\obj\\",
+        "outputPath": "E:\\LahiruDilshan\\2025-06-30 .net change app console\\XONT-AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DomainCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

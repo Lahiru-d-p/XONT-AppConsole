@@ -93,3 +93,7 @@ V2050		20230807		Wathsala				2.0.32.0				1.upgrade to jquery version 3.6.4
 																			4.exclude admin, xontadmin, administrator users from license expiring.
 V2051		20231107		Padmala					2.0.33.0				Fixed issue - V2 Grid not work correctly with jquery version 3.6.4.  Apply latest GridViewScroll. old one is not support for jquery version 3.6.4
 V2052		20230228		Padmala					2.0.34.0				Include bootstrap-multiselect js and css files(It needed STDOC01)
+
+V2053		20250731		Nazeer					2.0.35.0				**(Main Change) Checking every URL request to make sure logged in User has access to the task, else show error page.
+																			*gridviewScroll-old.min.js,jquery-old.min.js,jquery-ui-old.min.js files(Needed for SOMNT12). 
+																			*Set TLS1.2 to Global.asax

@@ -3994,6 +3994,36 @@ namespace XONT.Ventura.AppConsole.DALCore
         }
 
 
+
+        //V2053 Add Start
+        public DataTable GetAuthorizedTaskURLs(string userName, ref MessageSet message)
+        {
+            try
+            {
+                string spName = "[dbo].[usp_GetAuthorizedTaskURLs]";
+
+                var parameters = new[]
+                {
+                new SqlParameter("@UserName", SqlDbType.NVarChar, 50)
+                { Value = (object)userName ?? DBNull.Value }
+                };
+
+                return _dbHelper.ExecuteStoredProcedure(
+                    _systemDbConnectionString,
+                    spName,
+                    parameters
+                );
+
+            }
+            catch (Exception ex)
+            {
+                message = MessageCreate.CreateErrorMessage(0, ex, "GetAuthorizedTaskURLs", "XONT.Ventura.AppConsole.DAL.dll");
+                return new DataTable();
+            }
+        }
+        //V2053 Add End
+
+
         #endregion
 
     }

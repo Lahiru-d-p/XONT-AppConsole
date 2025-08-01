@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3bcYwDp1dTg=",
+  "dgSpecHash": "r/+c2YfrvsQ=",
   "success": true,
-  "projectFilePath": "E:\\LahiruDilshan\\2025-07-21 app console upgrade\\AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DALCore\\XONT.Ventura.AppConsole.DALCore.csproj",
+  "projectFilePath": "E:\\LahiruDilshan\\2025-06-30 .net change app console\\XONT-AppConsole\\XONT.VENTURA.APPCONSOLE\\XONT.Ventura.AppConsole.DALCore\\XONT.Ventura.AppConsole.DALCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lahiru\\.nuget\\packages\\azure.core\\1.44.1\\azure.core.1.44.1.nupkg.sha512",
     "C:\\Users\\Lahiru\\.nuget\\packages\\azure.identity\\1.13.2\\azure.identity.1.13.2.nupkg.sha512",
